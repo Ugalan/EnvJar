@@ -9,7 +9,7 @@ public class Util {
 	}
 	
 	/***
-	 * ¼ÆËã×Ö·û´®±í´ïÊ½µÄÖµ
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½Ö·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê½ï¿½ï¿½Öµ
 	 * @param expression
 	 * @return
 	 */
@@ -25,5 +25,19 @@ public class Util {
         }
         
         return result;
+    }
+    
+    public boolean CalcStrExpValEx(String expression) {
+    	String[] exprs = expression.split("&&");
+    	for (int i=0; i<exprs.length; i++){
+    		String[] comp = exprs[i].split("<|>");
+    		int lNum = Integer.valueOf(comp[0]);
+    		int rNum = Integer.valueOf(comp[1]);
+    		if (!((exprs[i].contains("<") && lNum < rNum) || (exprs[i].contains(">") && lNum > rNum))){
+    			return false;
+    		} 
+    	}
+    	
+    	return true;
     }
 }
